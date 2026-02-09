@@ -1,0 +1,165 @@
+crie um site single-page (html + css + js) com uma experiência de “presente digital”: uma caixa de lembranças que abre e revela uma carta, uma polaroid com foto, e um mini bilhete (p.s.). sem frameworks. entregue em 3 arquivos: index.html, style.css, script.js.
+
+estilo geral:
+- aesthetic “velhos tempos”: papel, sombras suaves, luz quente, textura leve de mesa/papel.
+- tipografia manuscrita para a carta (google fonts: “caveat” ou “dancing script”) e uma fonte simples para botões/labels.
+- animações suaves (ease-in-out), sem exagero.
+- responsivo (mobile first) e acessível (aria-label, foco visível, enter/space para interagir).
+
+estrutura e funcionamento:
+
+1) cena inicial (caixa fechada)
+- fundo: uma “mesa” com textura leve (css).
+- no centro: uma caixa de presente fechada feita em css (divs), com uma fitinha ou selo.
+- texto pequeno: “clique para abrir”.
+- ao clicar (ou enter/space), a tampa abre com animação 3d (transform rotateX), e aparece a cena da caixa aberta.
+
+2) cena caixa aberta (itens surgindo)
+- após abrir, três itens sobem de dentro com animação:
+  a) “carta” (principal): um envelope/cartinha com selo
+  b) “polaroid”: um cartão polaroid com uma foto real (imagem local do projeto)
+  c) “mini bilhete”: um papelzinho pequeno com um coração
+- cada item é clicável e tem hover/press feedback (leve escala + sombra).
+- incluir um botão discreto “fechar caixa” que retorna para a cena inicial com animação reversa.
+
+3) polaroid com foto minha
+- usar imagem local no projeto. instruções no código:
+  - criar pasta assets/
+  - colocar uma foto com nome: assets/minha-foto.jpg (ou .png)
+- a polaroid deve mostrar a foto com estilo vintage: borda branca grossa, sombra e uma legenda pequena.
+- ao clicar na polaroid, abrir um modal leve (overlay) ampliando a polaroid, com botão fechar.
+
+4) mini bilhete (opção 4)
+- ao clicar no mini bilhete, abrir um mini modal/overlay ou um “bilhete aberto” com a frase abaixo (exatamente assim):
+p.s.: além de linda e uma gatinha, você é alguém que eu amo muito 🤍
+- com fonte manuscrita e um pequeno coração no canto.
+- botão fechar.
+
+5) abrir a carta (cena da carta)
+- ao clicar na carta, abrir uma cena/modal fullscreen com a carta central grande (papel com textura), e fundo escurecido/desfocado.
+- incluir botões:
+  - “voltar pra caixa” (fecha a carta e retorna pra cena da caixa aberta)
+  - “pular animação” (mostra o texto inteiro imediatamente)
+  - “virar” (faz flip 3d para o verso)
+  - “música: off/on” (desligado por padrão)
+  - “confete” (solta confete leve uma vez)
+- a carta deve ter efeito de “escrita”: revelar o texto letra por letra (typewriter), com pausas naturais entre parágrafos/linhas. manter a formatação (quebras de linha).
+- garantir que, se a pessoa clicar “pular animação”, o texto aparece completo sem quebrar layout.
+
+6) verso da carta (flip 3d)
+- implementar card flip 3d: frente = texto, verso = desenho.
+- no verso: desenhar um rabisco simples (doodle) de um garoto e uma garota de mãos dadas felizes.
+- o rabisco deve ter pequenas variações a cada recarregamento (aleatorizar: posição, curvatura do sorriso, altura, tamanho da cabeça, ângulo do braço). manter fofo e simples, em linhas pretas/cinzas.
+- pode usar canvas (preferível) e desenhar com strokes. o desenho deve ficar centralizado no verso da carta.
+- incluir texto pequeno no verso: “🤍” ou “sempre” discretamente (não precisa se não ficar bonito).
+
+7) música (opcional)
+- botão “música: off/on” começa em off.
+- se possível, incluir um arquivo local opcional em assets/ (ex: assets/musica.mp3) e tocar/pausar.
+- se não houver arquivo, use web audio api para gerar um som ambiente bem suave (bem baixo) como placeholder, sem ser irritante.
+- garantir que a música não toque automaticamente (somente após clique do usuário).
+
+8) confete (aniversário)
+- botão “confete” dispara confete simples com css/canvas por 2-3 segundos, leve.
+- evitar travar celular. permitir apenas 1 vez (ou cooldown).
+
+9) acessibilidade e mobile
+- todos botões com aria-label.
+- foco visível no teclado.
+- enter/space acionam itens clicáveis.
+- carta com scroll suave no mobile se o texto ficar grande.
+
+10) arquivos finais
+- index.html: estrutura com containers para cena da caixa, cena da carta, modais.
+- style.css: toda estética (mesa, caixa, itens, carta, polaroid, bilhete, botões, animações, responsividade).
+- script.js: lógica (abrir/fechar caixa, abrir/fechar carta, typewriter + pular, flip, gerar rabisco canvas com random, modal polaroid, modal bilhete, música on/off, confete).
+
+conteúdo (não alterar nenhuma palavra):
+- texto da carta (frente) deve ser exatamente este abaixo, mantendo as quebras de linha:
+
+Felizzz aniversário Emmy :DD,
+deu meia noite ou seja, agora é seu aniversário, ou pelo menos espero que você esteja vendo isso as 00:00 da segunda feira ksksksksks
+
+bom primeiramente eu queria te desejar um feliz aniversário, que Deus venha te abençoar te guardar e te livrar de todo mal,
+que você continue sendo essa garota maravilhosa que você é,
+que nós nunca se separe
+
+eu não sou muito bom pra escrever esses tipos de coisas,
+mas tudo que eu disser aqui saiu do meu coração,
+e eu queria dizer também que você é muito muito especial pra mim,
+
+que você tem sido minha alegria nos ultimos tempos,
+a sua presença tem me feito bem,
+
+e mesmo que estejamos um longe do outro,
+eu me sinto bastante feliz só de conversar com vc pelo zap,
+e de jogar roblox com você quase todas as noites,
+isso tem sido muito dahora,
+
+e desde uns tempos pra cá,
+eu sinto que esse sentimento por você tem aumentado mais e mais,
+e eu preciso te dizer que eu não só gosto de você como eu te amo,
+eu te amo muito mesmo e é pra valer,
+
+só de pensar em você meu coração acelera
+e eu começo a tipo a dar uns calafrios,
+um nervosismo sabe,
+
+espero que dê tudo certo pra nós se ver hoje ( no seu aniversário),
+
+(Há um detalhe, esse texto eu estou escrevendo no dia 05 ou seja na quinta kkkkkkkk,
+porque caso o meu plano dê errado eu consiga resolver com tempo de folga boa)
+
+bom voltando ao assunto,
+eu espero que dê tudo certo pra agente se ver
+(sim, *AGENTE*, porque eu quero AGENTE junto ksksksk),
+é o meu sonho,
+
+e tipo, eu sempre pedi pra Deus,
+uma mulher que tivesse os mesmos interesses que o meu,
+e a vontade de crescer junto comigo,
+uma mulher linda e maravilhosa,
+
+ai absolutamente do nada você apareceu,
+lá dos cafundó do judas KKKKKKKKKKKK,
+
+de um grupo que eu nem se quer interagia,
+se eu entrei 10x pra conversar lá foi muito,
+
+mas eu acho que pra tudo tem um propósito pro destino,
+
+e bom, eu não sei muito como que vai ser o futuro
+mas eu sei de uma coisa,
+que eu te amo muito muito muito mesmo,
+
+eu nem se quer pegava no celular de manhã cedo,
+eu só pego agora pra te mandar bom dia,
+
+meu dia só começa quando eu te mando bom dia,
+e só acaba quando eu te dou boa noite,
+
+e eu penso sobre o nosso encontro dia e noite também,
+
+e eu faria de tudo,
+de tudo mesmo pra poder ter você comigo,
+
+eu não sei o que exatamente você sente por mim,
+mas eu só queria dizer isso mesmo,
+
+não sei se eu tô fazendo uma ótima escolha em dizer isso no seu aniversário,
+mas esse é um dos meus presentes pra você pra hoje,
+
+dizer o quanto eu te amo,
+e o quanto eu gosto de você,
+o quanto eu me importo com você 🤍
+
+mini bilhete (p.s.) deve ser exatamente:
+p.s.: além de linda e uma gatinha, você é alguém que eu amo muito 🤍
+
+texto da polaroid (legenda) sugestão:
+“um pedacinho do que eu sinto 🤍”
+(pode ajustar se ficar melhor no layout, mas mantenha esse sentido)
+
+importante:
+- no código, deixar bem claro onde trocar a foto (assets/minha-foto.jpg).
+- garantir que se a imagem não existir, mostrar um placeholder com aviso “adicione sua foto em assets/minha-foto.jpg”.
